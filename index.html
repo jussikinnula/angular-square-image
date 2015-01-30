@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>angular-square-image demo</title>
+    <script data-require="angular.js@1.3.x" src="https://code.angularjs.org/1.3.11/angular.js" data-semver="1.3.11"></script>
+    <script src="angular-square-image.js"></script>
+    <script>(function(){
+        var app = angular.module("squareImageDemo", ['angular-square-image']);
+    })();</script>
+    <style>
+        .container { max-width: 960px; margin: 10px auto; }
+        table { width: 100%; }
+        td, th { width: 50%; }
+        img { width: 100%; height: auto;}
+    </style>
+</head>
+<body ng-app="squareImageDemo">
+    <div class="container">
+        <h1>angular-square-image</h2>
+        <p>Note! Remember to run this <b>index.html</b> on a web server, for example <b>php -S localhost:5000</b> (then open <a href="http://localhost:5000/index.html">http://localhost:5000/index.html</a> with your browser). Local files cannot access images from network because of CORS restrictions.</p>
+        <h2>Horizontal image</h2>
+        <table>
+            <tr ng-init="image1 = 'http://frantic.s3.amazonaws.com/angular-square-image/flamingos-horizontal.jpg'">
+                <td colspan="2"><a ng-href="{{ image1 }}">{{ image1 }}</a></td>
+            </tr>
+            <tr>
+                <th>Original:</th>
+                <th>Output:</th>
+            </tr>
+            <tr>
+                <td><img ng-src="{{ image1 }}"></td>
+                <td><square-image image="{{ image1 }}"></td>
+            </tr>
+        </table>
+        <hr>
+        <h2>Vertical image</h2>
+        <table>
+            <tr ng-init="image2 = 'http://frantic.s3.amazonaws.com/angular-square-image/flamingos-vertical.jpg'">
+                <td colspan="2"><a ng-href="{{ image1 }}">{{ image2 }}</a></td>
+            </tr>
+            <tr>
+                <th>Original:</th>
+                <th>Output:</th>
+            </tr>
+            <tr>
+                <td><img ng-src="{{ image2 }}"></td>
+                <td><square-image image="{{ image2 }}"></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
