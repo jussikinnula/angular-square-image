@@ -30,7 +30,6 @@ module.directive('squareImage', function() {
       };
       
       scope.$watch('image', function(value) {
-        console.log(value);
         img.src = value;
       });
     }
