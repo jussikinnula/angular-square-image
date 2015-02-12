@@ -1,6 +1,6 @@
 {
   "name": "angular-square-image",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Directive to produce square image from URL. If width is greater than height, height is used as both width and height of output - and vice verca.",
   "main": "angular-square-image.js",
   "ignore": [
