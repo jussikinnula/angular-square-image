@@ -1,12 +1,14 @@
 (function(){
 
-var module = angular.module("angular-square-image", []);
+var module = angular.module("angular-square-image", [
+  'ngSanitize'
+]);
 
-module.directive('squareImage', function() {
+module.directive('squareImage', function($sce) {
   return {
     restrict: 'E',
     replace: true,
-    template: '<img ng-src="{{ squareImage }}">',
+    template: '<div ng-bind-html="data"></div>',
     scope: {
       'image': '@'
     },
@@ -16,9 +18,9 @@ module.directive('squareImage', function() {
 
       img.onload = function() {
         if (img.width === img.height) {
-          console.log("Image width is the same as height");
-          scope.squareImage = img.src;
+          scope.data = $sce.trustAsHtml('<img src="' + img.src + '">');
         } else {
+          console.log("Image width is not the same as height");
           var canvas = document.createElement('canvas');
           if (img.width > img.height) {
             canvas.width = img.height;
@@ -29,9 +31,9 @@ module.directive('squareImage', function() {
           }
           var ctx = canvas.getContext('2d');
           ctx.drawImage(img, 0, 0);
-          scope.squareImage = canvas.toDataURL('image/jpeg',1);
-          scope.$apply();
+          scope.data = $sce.trustAsHtml('<img src="' + canvas.toDataURL('image/jpeg',1) + '">');
         }
+        scope.$apply();
       };
       
       scope.$watch('image', function(value) {
